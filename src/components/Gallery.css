@@ -1,0 +1,232 @@
+.gallery-page {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.gallery-page--loaded {
+  opacity: 1;
+}
+
+/* Header */
+.gallery-header {
+  padding: 30px 24px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  margin-bottom: 30px;
+}
+
+.gallery-back:hover {
+  background: var(--glass-bg-hover);
+  color: var(--text-primary);
+  transform: translateX(-4px);
+}
+
+.gallery-header-info {
+  text-align: center;
+}
+
+.gallery-month-label {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--color-rose-light);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.gallery-title {
+  font-family: var(--font-cursive);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  background: linear-gradient(135deg, #fff, var(--color-pink-soft));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.gallery-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  padding: 0 24px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: galleryItemIn 0.5s ease forwards;
+  animation-delay: var(--delay, 0s);
+  aspect-ratio: 4 / 3;
+}
+
+@keyframes galleryItemIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gallery-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .gallery-item-img {
+  transform: scale(1.08);
+}
+
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+  opacity: 1;
+}
+
+.gallery-item-zoom {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* Empty State */
+.gallery-empty {
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.gallery-empty-emoji {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  animation: emptyBounce 2s ease-in-out infinite;
+}
+
+@keyframes emptyBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.gallery-empty h3 {
+  font-family: var(--font-cursive);
+  font-size: 2rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.gallery-empty p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.gallery-empty code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: var(--color-pink);
+}
+
+/* Month Navigation Footer */
+.gallery-nav-footer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 24px 60px;
+  max-width: 800px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.gallery-nav-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.gallery-nav-btn:hover {
+  background: var(--glass-bg-hover);
+  color: var(--color-rose-light);
+  border-color: rgba(255, 107, 157, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Error */
+.gallery-error {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.gallery-error h2 {
+  font-family: var(--font-cursive);
+  font-size: 2rem;
+}
+
+.gallery-error button {
+  background: var(--color-rose);
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 0 16px 40px;
+  }
+}

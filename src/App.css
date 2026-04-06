@@ -1,0 +1,69 @@
+/* ============================================================
+   APP LAYOUT STYLES
+   ============================================================ */
+
+.home-page {
+  position: relative;
+  z-index: 1;
+}
+
+/* Months Section */
+.months-section {
+  padding: var(--section-padding);
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.months-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* Footer */
+.app-footer {
+  text-align: center;
+  padding: 40px 20px 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.app-footer::before {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+  margin: 0 auto 30px;
+}
+
+.footer-text {
+  font-family: var(--font-cursive);
+  font-size: 1.6rem;
+  color: var(--color-pink-soft);
+  margin-bottom: 8px;
+}
+
+.footer-date {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .months-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1024px) {
+  .months-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

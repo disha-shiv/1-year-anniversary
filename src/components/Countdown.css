@@ -1,0 +1,135 @@
+.countdown-section {
+  text-align: center;
+  padding: 40px 20px 60px;
+}
+
+.countdown-label {
+  font-family: var(--font-cursive);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--color-pink-soft);
+  margin-bottom: 6px;
+}
+
+.countdown-date {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.countdown-grid {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.countdown-box {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--border-radius-sm);
+  padding: 20px 16px;
+  min-width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.countdown-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-rose), transparent);
+}
+
+.countdown-box:hover {
+  background: var(--glass-bg-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(255, 45, 111, 0.15);
+}
+
+.countdown-number {
+  font-family: var(--font-ui);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  background: linear-gradient(180deg, #fff, var(--color-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.countdown-unit {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+/* Celebration state */
+.countdown-celebration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 30px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--card-radius);
+  animation: celebrationPulse 2s ease-in-out infinite;
+}
+
+.celebration-emoji {
+  font-size: 3rem;
+  animation: celebrationBounce 1s ease-in-out infinite alternate;
+}
+
+.celebration-title {
+  font-family: var(--font-cursive);
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-rose-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.celebration-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  width: 100%;
+}
+
+@keyframes celebrationPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.25); }
+}
+
+@keyframes celebrationBounce {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-8px) scale(1.1); }
+}
+
+@media (max-width: 480px) {
+  .countdown-box {
+    min-width: 72px;
+    padding: 14px 10px;
+  }
+  .countdown-grid {
+    gap: 10px;
+  }
+}

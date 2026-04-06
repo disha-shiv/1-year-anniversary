@@ -1,0 +1,32 @@
+.floating-hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -40px;
+  filter: drop-shadow(0 0 6px rgba(255, 100, 150, 0.3));
+  animation: floatUpward linear forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes floatUpward {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: var(--start-opacity, 0.3);
+  }
+  50% {
+    opacity: var(--start-opacity, 0.3);
+  }
+  100% {
+    transform: translateY(-110vh) rotate(360deg) scale(0.5);
+    opacity: 0;
+  }
+}

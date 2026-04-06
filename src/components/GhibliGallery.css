@@ -1,0 +1,205 @@
+.ghibli-section {
+  padding: 80px 24px 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.ghibli-section--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating sparkles */
+.ghibli-sparkle {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.4;
+  pointer-events: none;
+  animation: sparkleFloat 6s ease-in-out infinite;
+}
+
+.ghibli-sparkle--1 {
+  top: 20px;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.ghibli-sparkle--2 {
+  top: 60px;
+  right: 8%;
+  animation-delay: -2s;
+  font-size: 1.2rem;
+}
+
+.ghibli-sparkle--3 {
+  top: 100px;
+  left: 50%;
+  animation-delay: -4s;
+  font-size: 1rem;
+}
+
+@keyframes sparkleFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+  50% { transform: translateY(-15px) rotate(20deg); opacity: 0.7; }
+}
+
+/* Header */
+.ghibli-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.ghibli-badge {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #7dd3a8;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: rgba(125, 211, 168, 0.1);
+  border: 1px solid rgba(125, 211, 168, 0.2);
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.ghibli-title {
+  font-family: var(--font-cursive);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #7dd3a8, #a8e6cf, #ffd3b6, #ffaaa5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ghibli-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Grid — 2x2 cinematic layout */
+.ghibli-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Individual card */
+.ghibli-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation: ghibliCardIn 0.6s ease forwards;
+  animation-delay: var(--delay, 0s);
+  cursor: pointer;
+}
+
+.ghibli-section--visible .ghibli-card {
+  animation-play-state: running;
+}
+
+@keyframes ghibliCardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.ghibli-card-inner {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.ghibli-card:hover .ghibli-card-inner {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 50px rgba(125, 211, 168, 0.15),
+    0 0 0 1px rgba(125, 211, 168, 0.2);
+}
+
+.ghibli-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.ghibli-card:hover .ghibli-card-img {
+  transform: scale(1.06);
+}
+
+/* Overlay */
+.ghibli-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.ghibli-card:hover .ghibli-card-overlay {
+  opacity: 1;
+}
+
+.ghibli-card-icon {
+  font-size: 2rem;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+}
+
+.ghibli-card-text {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Decorative frame */
+.ghibli-card-frame {
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  pointer-events: none;
+  transition: border-color 0.4s ease;
+}
+
+.ghibli-card:hover .ghibli-card-frame {
+  border-color: rgba(125, 211, 168, 0.35);
+}
+
+@media (max-width: 600px) {
+  .ghibli-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ghibli-card-inner {
+    aspect-ratio: 4 / 5;
+  }
+
+  .ghibli-section {
+    padding: 60px 16px 80px;
+  }
+}

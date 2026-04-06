@@ -1,0 +1,141 @@
+/* ============================================================
+   GLOBAL STYLES & DESIGN TOKENS
+   1-Year Anniversary — Disha ❤️
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ---- Design Tokens ---- */
+:root {
+  /* Primary Palette — Deep Rose / Burgundy */
+  --color-bg-dark: #0d0a0e;
+  --color-bg-gradient-1: #1a0a14;
+  --color-bg-gradient-2: #2d0a1e;
+  --color-bg-gradient-3: #0d0a1a;
+
+  /* Accent Colors */
+  --color-rose: #ff2d6f;
+  --color-rose-light: #ff6b9d;
+  --color-rose-glow: rgba(255, 45, 111, 0.4);
+  --color-pink: #ff85a2;
+  --color-pink-soft: #ffc2d1;
+  --color-gold: #ffd700;
+  --color-gold-soft: rgba(255, 215, 0, 0.3);
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-bg-hover: rgba(255, 255, 255, 0.1);
+  --glass-blur: 20px;
+
+  /* Text */
+  --text-primary: #fff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.45);
+
+  /* Fonts */
+  --font-cursive: 'Dancing Script', cursive;
+  --font-body: 'Quicksand', sans-serif;
+  --font-ui: 'Inter', sans-serif;
+
+  /* Spacing */
+  --section-padding: 80px 24px;
+  --card-radius: 20px;
+  --border-radius-sm: 12px;
+
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ---- Global Reset ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-rose);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-rose-light);
+}
+
+/* ---- Selection ---- */
+::selection {
+  background: var(--color-rose);
+  color: white;
+}
+
+/* ---- Links ---- */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---- Images ---- */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---- Utility ---- */
+.section-title {
+  font-family: var(--font-cursive);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+  margin-bottom: 60px;
+  background: linear-gradient(135deg, var(--color-rose-light), var(--color-pink-soft), var(--color-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- Page Transitions ---- */
+.page-enter {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* ---- Responsive Container ---- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
