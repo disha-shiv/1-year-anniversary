@@ -25,7 +25,7 @@ export default function LoveLetter() {
         <div className="letter-envelope">
           <div className="letter-seal">💌</div>
           <div className="letter-paper-inner">
-            <h2 className="letter-heading">My Dearest Disha,</h2>
+            <h2 className="letter-heading">My Dearest <span className="letter-name-gold">Disha</span>,</h2>
             <div className="letter-body">
               <p>
                 Happy 1-Year Anniversary, my love! ❤️ One whole year of us — 
@@ -43,6 +43,9 @@ export default function LoveLetter() {
               </p>
               <p className="letter-closing">
                 Here's to us — today, tomorrow, and forever. 🥰
+              </p>
+              <p className="letter-ps">
+                P.S. — I built this entire website just for you. Every pixel, every animation, every word. Because you deserve the world 🌍💕
               </p>
               <p className="letter-signature">
                 Yours forever,<br />

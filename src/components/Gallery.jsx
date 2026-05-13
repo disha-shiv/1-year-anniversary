@@ -29,6 +29,15 @@ export default function Gallery() {
 
   const basePath = `${import.meta.env.BASE_URL}images/${monthData.folder}`;
   const hasImages = monthData.images.length > 0;
+  const videos = monthData.videos || [];
+  const hasVideos = videos.length > 0;
+  const hasContent = hasImages || hasVideos;
+
+  // Combined media for lightbox (images first, then videos)
+  const allMedia = [
+    ...monthData.images.map((f) => ({ type: 'image', file: f })),
+    ...videos.map((f) => ({ type: 'video', file: f })),
+  ];
 
   return (
     <div className={`gallery-page ${loaded ? 'gallery-page--loaded' : ''}`}>
@@ -51,23 +60,43 @@ export default function Gallery() {
       </header>
 
       {/* Gallery Grid */}
-      {hasImages ? (
+      {hasContent ? (
         <div className="gallery-grid">
           {monthData.images.map((img, i) => (
             <div
-              key={i}
+              key={`img-${i}`}
               className="gallery-item"
               style={{ '--delay': `${i * 0.08}s` }}
               onClick={() => setLightboxIndex(i)}
             >
               <img
-                src={`${basePath}/${img}`}
+                src={`${basePath}/${encodeURIComponent(img)}`}
                 alt={`${monthData.month} photo ${i + 1}`}
                 loading="lazy"
                 className="gallery-item-img"
               />
               <div className="gallery-item-overlay">
                 <span className="gallery-item-zoom">🔍</span>
+              </div>
+            </div>
+          ))}
+          {videos.map((vid, i) => (
+            <div
+              key={`vid-${i}`}
+              className="gallery-item gallery-item--video"
+              style={{ '--delay': `${(monthData.images.length + i) * 0.08}s` }}
+              onClick={() => setLightboxIndex(monthData.images.length + i)}
+            >
+              <video
+                src={`${basePath}/${encodeURIComponent(vid)}`}
+                className="gallery-item-img"
+                muted
+                preload="metadata"
+                onContextMenu={(e) => e.preventDefault()}
+              />
+              <div className="gallery-item-overlay gallery-item-overlay--video">
+                <span className="gallery-item-play">▶</span>
+                <span className="gallery-item-video-label">Video</span>
               </div>
             </div>
           ))}
@@ -112,7 +141,7 @@ export default function Gallery() {
       {/* Lightbox */}
       {lightboxIndex !== null && (
         <Lightbox
-          images={monthData.images}
+          media={allMedia}
           currentIndex={lightboxIndex}
           onClose={() => setLightboxIndex(null)}
           basePath={basePath}

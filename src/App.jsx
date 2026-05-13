@@ -1,11 +1,16 @@
+import { useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useAnniversaryStatus } from './hooks/useAnniversaryStatus';
 import FloatingHearts from './components/FloatingHearts';
+import SparkleCursor from './components/SparkleCursor';
+import Confetti from './components/Confetti';
+import RevealAnimation from './components/RevealAnimation';
 import Hero from './components/Hero';
 import LoveLetter from './components/LoveLetter';
 import MonthCard from './components/MonthCard';
 import Gallery from './components/Gallery';
 import GhibliGallery from './components/GhibliGallery';
+import FinalGallery from './components/FinalGallery';
 import CountdownPage from './components/CountdownPage';
 import galleryData from './data/galleryData';
 import './App.css';
@@ -29,6 +34,9 @@ function HomePage() {
       {/* Ghibli Gallery */}
       <GhibliGallery />
 
+      {/* Final — Special Videos */}
+      <FinalGallery />
+
       {/* Love Letter */}
       <LoveLetter />
 
@@ -45,18 +53,34 @@ function HomePage() {
 
 function AppContent() {
   const hasArrived = useAnniversaryStatus();
+  const [revealDone, setRevealDone] = useState(false);
+
+  const handleRevealComplete = useCallback(() => {
+    setRevealDone(true);
+  }, []);
 
   // Before May 14, 2026: Show only the countdown page
-  // On/After May 14, 2026: Show the full website
   if (!hasArrived) {
     return <CountdownPage />;
   }
 
+  // On/After May 14, 2026: Show reveal animation, then full website
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/month/:monthId" element={<Gallery />} />
-    </Routes>
+    <>
+      {/* Reveal envelope animation (plays once on load) */}
+      {!revealDone && <RevealAnimation onComplete={handleRevealComplete} />}
+
+      {/* Confetti burst */}
+      {revealDone && <Confetti duration={4000} />}
+
+      {/* Sparkle cursor */}
+      <SparkleCursor />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/month/:monthId" element={<Gallery />} />
+      </Routes>
+    </>
   );
 }
 

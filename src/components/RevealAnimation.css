@@ -1,0 +1,150 @@
+.reveal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: linear-gradient(135deg, #0a0612 0%, #1a0a2e 50%, #0d0518 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease;
+}
+
+.reveal-overlay--opening {
+  animation: revealFadeOut 2s ease 1.5s forwards;
+}
+
+@keyframes revealFadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; pointer-events: none; }
+}
+
+.reveal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Envelope */
+.reveal-envelope {
+  position: relative;
+  width: 200px;
+  height: 140px;
+  animation: envelopeFloat 2s ease-in-out infinite;
+}
+
+@keyframes envelopeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Envelope body */
+.reveal-body {
+  position: absolute;
+  bottom: 0;
+  width: 200px;
+  height: 120px;
+  background: linear-gradient(135deg, #f472b6, #ec4899);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 40px rgba(236, 72, 153, 0.3);
+  z-index: 2;
+}
+
+.reveal-heart {
+  font-size: 3rem;
+  animation: heartBeat 1s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* Envelope flap (triangle) */
+.reveal-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-top: 70px solid #db2777;
+  z-index: 3;
+  transform-origin: top center;
+  transition: transform 0.8s ease;
+}
+
+.reveal-envelope--open .reveal-flap {
+  transform: rotateX(180deg);
+}
+
+/* Letter sliding out */
+.reveal-letter {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  width: 160px;
+  height: 100px;
+  background: #fff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: transform 0.8s ease 0.3s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.reveal-envelope--open .reveal-letter {
+  transform: translateX(-50%) translateY(-80px);
+}
+
+.reveal-letter-text {
+  font-family: var(--font-cursive);
+  font-size: 1rem;
+  color: #be185d;
+  text-align: center;
+}
+
+/* Tagline */
+.reveal-tagline {
+  font-family: var(--font-cursive);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease 0.8s, transform 0.6s ease 0.8s;
+}
+
+.reveal-tagline--show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  .reveal-envelope {
+    width: 160px;
+    height: 112px;
+  }
+  .reveal-body {
+    width: 160px;
+    height: 96px;
+  }
+  .reveal-flap {
+    border-left-width: 80px;
+    border-right-width: 80px;
+    border-top-width: 56px;
+  }
+  .reveal-letter {
+    width: 128px;
+    height: 80px;
+  }
+  .reveal-heart {
+    font-size: 2.2rem;
+  }
+}

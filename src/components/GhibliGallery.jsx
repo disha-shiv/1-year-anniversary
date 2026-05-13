@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { ghibliData } from '../data/galleryData';
-import Lightbox from './Lightbox';
 import './GhibliGallery.css';
 
 export default function GhibliGallery() {
-  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [selectedImg, setSelectedImg] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
@@ -18,6 +17,16 @@ export default function GhibliGallery() {
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
+
+  // Close on Escape key
+  useEffect(() => {
+    if (selectedImg === null) return;
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setSelectedImg(null);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [selectedImg]);
 
   const basePath = `${import.meta.env.BASE_URL}images/${ghibliData.folder}`;
 
@@ -44,7 +53,7 @@ export default function GhibliGallery() {
             key={i}
             className="ghibli-card"
             style={{ '--delay': `${i * 0.15}s` }}
-            onClick={() => setLightboxIndex(i)}
+            onClick={() => setSelectedImg(img)}
           >
             <div className="ghibli-card-inner">
               <img
@@ -64,13 +73,16 @@ export default function GhibliGallery() {
         ))}
       </div>
 
-      {lightboxIndex !== null && (
-        <Lightbox
-          images={ghibliData.images}
-          currentIndex={lightboxIndex}
-          onClose={() => setLightboxIndex(null)}
-          basePath={basePath}
-        />
+      {/* Simple fullscreen popup — click outside to close */}
+      {selectedImg && (
+        <div className="ghibli-popup" onClick={() => setSelectedImg(null)}>
+          <img
+            src={`${basePath}/${selectedImg}`}
+            alt="Ghibli art fullscreen"
+            className="ghibli-popup-img"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
       )}
     </section>
   );

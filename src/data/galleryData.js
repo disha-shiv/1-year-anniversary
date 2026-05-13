@@ -199,6 +199,14 @@ const galleryData = [
       "IMG-20260322-WA0035.jpg",
       "IMG-20260323-WA0000.jpg",
       "IMG-20260331-WA0006.jpg",
+      "WhatsApp Image 2026-05-13 at 5.32.41 PM.jpeg",
+      "WhatsApp Image 2026-05-13 at 5.32.41 PM (1).jpeg",
+      "WhatsApp Image 2026-05-13 at 5.32.42 PM.jpeg",
+      "WhatsApp Image 2026-05-13 at 5.32.42 PM (1).jpeg",
+      "WhatsApp Image 2026-05-13 at 5.32.43 PM.jpeg",
+    ],
+    videos: [
+      "WhatsApp Video 2026-05-13 at 5.32.41 PM.mp4",
     ],
   },
   {
@@ -208,7 +216,17 @@ const galleryData = [
     subtitle: "The countdown to forever",
     folder: "month-12",
     coverEmoji: "🎉",
-    images: [],
+    images: [
+      "WhatsApp Image 2026-05-13 at 5.37.59 PM.jpeg",
+      "WhatsApp Image 2026-05-13 at 5.38.00 PM.jpeg",
+      "WhatsApp Image 2026-05-13 at 5.38.04 PM.jpeg",
+      "WhatsApp Image 2026-05-13 at 5.38.04 PM (1).jpeg",
+      "WhatsApp Image 2026-05-13 at 5.38.05 PM.jpeg",
+      "WhatsApp Image 2026-05-13 at 5.38.05 PM (1).jpeg",
+      "WhatsApp Image 2026-05-13 at 5.38.05 PM (2).jpeg",
+      "WhatsApp Image 2026-05-13 at 5.38.06 PM.jpeg",
+    ],
+    videos: [],
   },
 ];
 
@@ -222,6 +240,16 @@ export const ghibliData = {
     "IMG-20251107-WA0014.jpg",
     "IMG-20251107-WA0015.jpg",
     "IMG-20251107-WA0016.jpg",
+  ],
+};
+
+// Final — special videos section
+export const finalData = {
+  title: "Our Special Moments 🎬💕",
+  subtitle: "Videos that capture our love story",
+  folder: "Final",
+  videos: [
+    "WhatsApp Video 2026-05-13 at 5.35.20 PM.mp4",
   ],
 };
 

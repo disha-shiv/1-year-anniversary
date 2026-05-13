@@ -230,3 +230,29 @@
     padding: 0 16px 40px;
   }
 }
+
+/* Video items */
+.gallery-item--video .gallery-item-overlay--video {
+  opacity: 1;
+  background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.6) 100%);
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gallery-item-play {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+  transition: transform 0.3s ease;
+}
+
+.gallery-item--video:hover .gallery-item-play {
+  transform: scale(1.2);
+}
+
+.gallery-item-video-label {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}

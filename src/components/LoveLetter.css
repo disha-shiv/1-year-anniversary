@@ -121,3 +121,27 @@
     padding: 24px 18px;
   }
 }
+
+.letter-name-gold {
+  background: linear-gradient(135deg, #f59e0b, #d97706, #fbbf24, #f59e0b);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 3s ease-in-out infinite;
+}
+
+@keyframes goldShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.letter-ps {
+  font-style: italic !important;
+  font-size: 0.9rem !important;
+  color: #9ca3af !important;
+  border-top: 1px dashed rgba(0,0,0,0.1);
+  padding-top: 12px;
+  margin-top: 8px !important;
+}
