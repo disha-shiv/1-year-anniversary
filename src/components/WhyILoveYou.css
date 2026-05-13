@@ -1,0 +1,151 @@
+.wily-section {
+  padding: 80px 24px 100px;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.wily-section--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wily-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.wily-badge {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #f472b6;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: rgba(244, 114, 182, 0.1);
+  border: 1px solid rgba(244, 114, 182, 0.2);
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.wily-title {
+  font-family: var(--font-cursive);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #f472b6, #fb7185, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.wily-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* Grid */
+.wily-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* Card container */
+.wily-card {
+  perspective: 800px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: wilyCardIn 0.5s ease forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+.wily-section--visible .wily-card {
+  animation-play-state: running;
+}
+
+@keyframes wilyCardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Inner flip container */
+.wily-card-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.wily-card--flipped .wily-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Shared face styles */
+.wily-front,
+.wily-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Front */
+.wily-front {
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.15), rgba(167, 139, 250, 0.15));
+  border: 1px solid rgba(244, 114, 182, 0.25);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wily-card:hover .wily-front {
+  border-color: rgba(244, 114, 182, 0.5);
+  box-shadow: 0 8px 30px rgba(244, 114, 182, 0.15);
+}
+
+.wily-front-text {
+  font-family: var(--font-cursive);
+  font-size: 1.3rem;
+  color: var(--text-primary);
+}
+
+/* Back */
+.wily-back {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(244, 114, 182, 0.15));
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  transform: rotateY(180deg);
+}
+
+.wily-back-text {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .wily-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .wily-front-text {
+    font-size: 1rem;
+  }
+
+  .wily-back-text {
+    font-size: 0.75rem;
+  }
+}

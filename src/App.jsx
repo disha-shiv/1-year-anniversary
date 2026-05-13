@@ -11,6 +11,9 @@ import MonthCard from './components/MonthCard';
 import Gallery from './components/Gallery';
 import GhibliGallery from './components/GhibliGallery';
 import FinalGallery from './components/FinalGallery';
+import Timeline from './components/Timeline';
+import WhyILoveYou from './components/WhyILoveYou';
+import RelationshipStats from './components/RelationshipStats';
 import CountdownPage from './components/CountdownPage';
 import galleryData from './data/galleryData';
 import './App.css';
@@ -30,6 +33,15 @@ function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* Interactive Timeline */}
+      <Timeline />
+
+      {/* Relationship Stats */}
+      <RelationshipStats />
+
+      {/* Why I Love You */}
+      <WhyILoveYou />
 
       {/* Ghibli Gallery */}
       <GhibliGallery />
